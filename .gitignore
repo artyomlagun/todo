@@ -21,3 +21,4 @@
 .DS_Store
 /log
 .keep
+config/*.yml
