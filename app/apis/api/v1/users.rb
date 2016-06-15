@@ -10,7 +10,7 @@ module API
 
         desc 'Get user by ID'
         params do
-          requires :id, type: Integer, desc: 'User Id.'
+          requires :id, type: Integer, desc: 'User Id'
         end
         get ':id' do
           @user = ::User.find(params[:id])
@@ -26,7 +26,7 @@ module API
           requires :email, type: String, desc: 'User Email'
         end
         post do
-          @user = User.new(declared(params))
+          @user = ::User.new(declared(params))
           if @user.save
             {status: true, user: @user}
           else
@@ -44,7 +44,7 @@ module API
           requires :email, type: String, desc: 'User Email'
         end
         put ':id' do
-          @user = User.find(params[:id])
+          @user = ::User.find(params[:id])
           if @user.update_attributes(declared(params))
             {status: true, user: @user}
           else
@@ -57,7 +57,7 @@ module API
           requires :id, type: Integer, desc: 'User Id'
         end
         delete ':id' do
-          @user = User.find(params[:id])
+          @user = ::User.find(params[:id])
           if @user.destroy
             {status: true, user: 'Was successfully destroy!'}
           else
