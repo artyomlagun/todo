@@ -23,6 +23,12 @@ RSpec.describe User, type: :model do
         user = FactoryGirl.build(:user, email: '')
         expect(user).not_to be_valid
       end
+      it 'should be uniqeness email' do
+        user = FactoryGirl.create(:user)
+        user_dup = user.dup
+
+        expect(user_dup).not_to be_valid
+      end
     end
 
     context 'display fullname' do

@@ -7,21 +7,22 @@ module API
     default_format :json
     prefix 'api'
 
-    included do
+    helpers do
       def logger
         Rails.logger
       end
-      
-      rescue_from ActiveRecord::RecordNotFound do |e|
-        error_response(message: e.message, status: 404)
-      end
 
-      rescue_from ActiveRecord::RecordInvalid do |e|
-        error_response(message: e.message, status: 422)
+      def server_error!(e)
+        error!({ error: 'Server error.' }, 500, { 'Content-Type' => 'text/error' }, message: e.message)
       end
     end
 
+    # rescue_from :all do |e|
+    #   server_error!(e)
+    # end
+
     mount API::V1::Base
     mount API::Status
+    # add_swagger_documentation
   end
 end

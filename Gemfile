@@ -18,6 +18,7 @@ gem 'devise'
 gem 'grape'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+gem 'hashie-forbidden_attributes'
 gem 'rack-cors'
 
 gem 'roo'

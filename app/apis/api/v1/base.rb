@@ -1,7 +1,9 @@
 module API
   module V1
     class Base < Grape::API
-      mount API::V1::User
+      version 'v1', using: :path
+
+      mount API::V1::Users
     end
   end
 end
